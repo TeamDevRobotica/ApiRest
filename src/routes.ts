@@ -1,5 +1,6 @@
-import {UserController} from "./controller/UserController";
-import {TutorControlador} from './controller/TutorControlador';
+import { UserController } from "./controller/UserController";
+import { TutorControlador } from './controller/TutorControlador';
+
 
 export const Routes = [{
     method: "get",
@@ -21,6 +22,12 @@ export const Routes = [{
     route: "/users",
     controller: UserController,
     action: "remove"
+}, {
+    // url para loguin
+    method: "get",
+    route: "/loguin/:usuario",
+    controller: UserController,
+    action: "loguin"
 },
 //TUTOR
 {

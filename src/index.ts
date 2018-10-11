@@ -1,11 +1,11 @@
 import "reflect-metadata";
-import {createConnection} from "typeorm";
+import { createConnection } from "typeorm";
 import * as express from "express";
 import * as bodyParser from "body-parser";
 import * as logger from 'morgan';
-import {Request, Response} from "express";
-import {Routes} from "./routes";
-import {User} from "./entity/User";
+import { Request, Response } from "express";
+import { Routes } from "./routes";
+import { User } from "./entity/User";
 
 createConnection().then(async connection => {
 
@@ -22,7 +22,7 @@ createConnection().then(async connection => {
                 result.then(result => result !== null && result !== undefined ? res.send(result) : undefined);
             } else if (result !== null && result !== undefined) {
                 res.json(result);
-            } 
+            }
         });
     });
 
