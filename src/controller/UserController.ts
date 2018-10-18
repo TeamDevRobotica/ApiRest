@@ -35,12 +35,21 @@ export class UserController {
         response.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
         response.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
         response.setHeader('Access-Control-Allow-Credentials', 'true');
-        const firstUser = await this.userRepository
-            .createQueryBuilder("user")
-            .where("user.usuario = :usuario", { usuario: request.params.usuario })
-            .getOne();
-        console.log(firstUser);
-        return firstUser;
+        // const firstUser = await this.userRepository
+        //     .createQueryBuilder("user")
+        //     .innerJoin("user.tipoUsuario", "TipoUsuario")
+        //     .select()
+        //     .where("user.usuario = :usuario", { usuario: request.params.usuario })
+        //     .getOne();
+        // console.log(firstUser);
+        const usuario = await this.userRepository.find({
+            relations: ['tipoUsuario', 'tutor', 'tutor.hijos'],
+            where: {
+                usuario: request.params.usuario
+            }
+        });
+        console.log(usuario);
+        return usuario;
     }
 
 }
